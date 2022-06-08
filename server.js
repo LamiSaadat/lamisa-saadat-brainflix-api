@@ -5,6 +5,8 @@ const videosRoutes = require("./routes/videos");
 const cors = require("cors");
 app.use(cors());
 
+app.use(express.static("./public/images"));
+
 //default route
 app.use("/", videosRoutes);
 //individual video route
