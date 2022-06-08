@@ -5,11 +5,9 @@ const videosRoutes = require("./routes/videos");
 const cors = require("cors");
 app.use(cors());
 
-app.get("/", (req, res) => {
-  res.send("I working");
-});
-
+//default route
 app.use("/", videosRoutes);
+//individual video route
 app.use("/:id", videosRoutes);
 
 app.listen(PORT, () => {
