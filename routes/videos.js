@@ -4,6 +4,7 @@ const fs = require("fs");
 const bodyParser = require("body-parser");
 const { networkInterfaces } = require("os");
 const { v4: uuid } = require("uuid");
+const { channel } = require("diagnostics_channel");
 
 const videosFilePath = "./data/videos.json";
 
@@ -20,7 +21,16 @@ router
   .get((_req, res) => {
     let videos = getVideos();
 
-    res.send(videos);
+    let videoData = videos.map((video) => {
+      return {
+        id: video.id,
+        title: video.title,
+        channel: video.channel,
+        image: video.image,
+      };
+    });
+
+    res.send(videoData);
   })
   .post((req, res) => {
     // res.send("Posting videos");
